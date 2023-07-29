@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aufgaben</title>
+  <style>
+    body {
+      padding: 0px;
+      font: 100px "Lucida Grande", Helvetica, Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    button {
+      font: 6vh "Lucida Grande", Helvetica, Arial, sans-serif;
+      width: 90vw;
+      height: 90vh;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: antiquewhite;
+      color: #0084ff;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="main_btn"></button>
+
+
+  <script>
+    let tasks = [];
+    (async function() {
+      const button = document.getElementById("main_btn");
+      const url = `${document.location.origin}/tasks.json`
+      tasks = (await (await fetch(url)).json())["Challenges"];
+
+      const task = tasks.splice(Math.floor(Math.random() * tasks.length), 1)[0]
+
+      button.innerText = task;
+
+      button.onclick = e => {
+        button.innerText = tasks.splice(Math.floor(Math.random() * tasks.length), 1)[0]
+      }
+
+
+
+    })()
+  </script>
+</body>
+
+</html>
