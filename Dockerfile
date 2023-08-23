@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/nodejs-16:latest
+FROM node:20.5.1
 
 # Copy package.json and package-lock.json
 COPY package*.json ./
