@@ -34,11 +34,11 @@
 
   <script>
     let tasks = [];
+    const button = document.getElementById("main_btn");
+    const game = new URL(document.location.href).searchParams.get("game");
+    const url = `${document.location.origin}/tasks.json`;
     (async function() {
-      const button = document.getElementById("main_btn");
-      const url = `${document.location.origin}/tasks.json`
-      tasks = (await (await fetch(url)).json())["Challenges"];
-
+      tasks = (await (await fetch(url)).json())[game];
       const task = tasks.splice(Math.floor(Math.random() * tasks.length), 1)[0]
 
       button.innerText = task;
